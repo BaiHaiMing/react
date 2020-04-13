@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+        // 实现数组的遍历，第一项默认是红色的，后续点击每一项切换红色
+
+        var arr = ["aa", "bb", "cc"]
+        var curIndex = 0  // 默认代表第一项的索引
+        function showList(arr) {
+            return (
+                <ul>
+                    {
+                        arr.map((item, index) => {
+                            return <li
+                                className={index === curIndex ? 'red' : ''}
+                                key={index}
+                                onClick={() => {
+                                    curIndex = index;
+                                    console.log(curIndex);
+                                    render() // 重新调用render方法
+                                }}
+                            >{item}</li>
+                        })
+                    }
+                </ul>
+            )
+        }
+        function render() {
+            ReactDOM.render(
+                <div>
+                    {
+                        showList(arr)
+                    }
+                </div>, document.getElementById("box")
+            )
+        }
+
+        render()
+    </script>
+</body>
+
+</html>

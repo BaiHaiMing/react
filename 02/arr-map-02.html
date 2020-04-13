@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+</head>
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+        var arr = ["aa","bb","cc"]
+        var arr2 = ["dd","ee","ff"]
+
+        // function showList(arr) {
+        //     return arr.map((item,index)=>{
+        //         return <li key={index}>{item}</li>
+        //     })
+        // }
+
+        function showList(arr){
+            var tempApp = []
+            for(var i = 0; i<arr.length; i++){
+                tempApp.push(<li key={i}>{arr[i]}</li>)
+            }
+            return tempApp
+        }
+
+        ReactDOM.render(
+            <ul>
+                {showList(arr)}
+                {showList(arr2)}
+            </ul>,document.getElementById("box")
+        )
+    </script>
+</body>
+</html>

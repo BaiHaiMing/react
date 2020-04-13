@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+
+        // 定义函数式组建 （无状态组件）
+        var arr = ['a', 'b', 'c']
+        var visible = true;  // 默认List是显示的
+
+        const List = props => {
+            // console.log(props)
+            return (
+                <ul>
+                    {
+                        props.arr.map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            )
+        }
+        function App() {
+            return (
+                <div>
+                    <h2 onClick={() => { visible = !visible; render() }}>商品列表</h2>
+                    {!visible || <List arr={arr} />}
+                </div>
+            )
+        }
+        function render() { 
+            ReactDOM.render(<App />, document.getElementById("box")) 
+        }
+
+        render()
+    </script>
+</body>
+
+</html>

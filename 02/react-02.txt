@@ -1,0 +1,16 @@
+1.react中遍历列表需要指定唯一的key值，可以使用map方法进行数组的遍历操作
+2.遍历列表的时候，注意标签能够拥有语义化的特点，
+3.return 后面建议加上（）
+4.react中定义组建的两种形式
+
+    函数式组建 （无状态组件）
+        const 组件名(首字母大写) = (props) => {
+            return jsx表达式
+        }
+    
+    类组件（有状态组件）
+    class 组件名 extends React.Component {
+        render() {  // render是必不可少的钩子函数
+            return  jsx表达式
+        }
+    }
