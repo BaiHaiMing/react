@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+        // jsx ==> javascript + xml
+        // 有且只能有一个根元素
+        // 因为借鉴了xml的语法规范，标签必须要闭合
+        // jsx里面事件名需要改成驼峰标示写法，例如：onclick ==> onClick
+        // class ==> className
+        var a = <h2 className="red" title='我是h2标签' id='a' onClick={() => { alert(111111) }}>hello world</h2>
+        var flag = true;
+        var arr = [1, 2, 3, 4, 5]
+        var und = null;
+        var obj = { name: '小明', age: 10 }
+        ReactDOM.render(
+            <div>
+                {a}
+                <p>{1 + 1}</p>
+                <p>{flag}</p>
+                <p>{arr}</p>
+                <p>{und}</p>
+                <p>{obj}</p>
+                <input type="text" />
+            </div>, document.getElementById("box")
+        )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script type="text/babel">
+        // vue的模板中遍历数组 ==> <li v-for='item in arr'>{{item}}</li>
+        // 遍历数组 arr.map
+        // 为什么要加 key？
+        // key 帮组React 识别哪些元素改变了，比如添加或删除。
+        // 因此你应当给数组中的每一个元素赋予一个确定的标识。
+        var arr = ['aa','bb','cc']
+        
+        ReactDOM.render(
+            <div>
+                {
+                    arr.map((item,index) => {
+                        return <p key={index}>{item}</p>
+                    })
+                }
+            </div>, document.getElementById("box")
+        )
+    </script>
+</body>
+
+</html>

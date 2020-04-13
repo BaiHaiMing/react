@@ -1,0 +1,33 @@
+1.react由来 特点 官网
+    1)npm init -y
+    2)npm i react -S (yarn add react)
+        直接找node_modules/react/umd目录 react.development.js文件
+    3)npm i react-dom -S (yarn add react-dom)
+        直接找node_modules/react-dom/umd目录 react-dom.development.js文件
+    4)npm i babel-standalone -S (yarn add babel-standalone)
+    5)页面当中的引入顺序：
+        a)react.development.js
+        b)react-dom.development.js
+        c)babel.js
+    6)script的type属性需要变成 type="text/babel"
+        a)es6的语法转换成es5的语法
+        b)解析jsx代码
+
+2.react简易环境的搭建
+
+3.jsx的原理
+    jsx是一种语法糖  
+    相当于 js+xml
+    jsx的使用，可以帮助我们提高开发效率
+    jsx的原理就是通过 React.createElement(tag,{attrs},content)  ==> 相当于底层创建了js内存对象（虚拟dom）===> ReactDOM.render()
+
+4.jsx一些注意事项
+    a)jsx ==> javascript + xml
+    b)有且只能有一个根元素
+    c)因为借鉴了xml的语法规范,标签必须要闭合
+    d)class ==> className
+    e)jsx里面事件名需要改成驼峰式写法，例如onclick => onClick
+    f)jsx里面内联样式 style={{backgroundColor:'yellow'}}
+
+6.遍历数组
+    
