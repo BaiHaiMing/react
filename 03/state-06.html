@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+        // 做一个简单的计数器案例
+
+        class Counter extends React.Component {
+            constructor() {
+                // console.log("constructor-01")
+                super()
+                //初始化组件的状态
+                this.state = {
+                    count: 1
+                }
+                this.handleClick = this.handleClick.bind(this)
+            }
+            handleClick() {
+                // this.setState({ //会触发render的重新渲染操作
+                //     count: this.state.count + 1
+                // })
+                this.setState((prevState) => {
+                    return {
+                        count: prevState.count+1
+                    }
+                })
+                this.setState((prevState) => {
+                    return {
+                        count: prevState.count+1
+                    }
+                })
+                this.setState((prevState) => {
+                    return {
+                        count: prevState.count+1
+                    }
+                })
+            }
+            render() {
+                // console.log("render-02")
+                return (
+                    <div>
+                        <p>counter====> {this.state.count}</p>
+                        <p><button onClick={this.handleClick}>改变count</button></p>
+                    </div>
+                )
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Counter />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById("box"))
+    </script>
+</body>
+
+</html>

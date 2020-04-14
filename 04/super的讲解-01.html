@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>super的讲解-01</title>
+</head>
+
+<body>
+    <script>
+
+        // ES5 里面的构造函数
+        // function Person(name,age){
+        //     this.name = name;
+        //     this.age = age
+        // }
+        // Person.prototype.say = function(){
+        //     return this.name+","+this.age
+        // }
+
+        // let p = new Person("张三",18)
+        // let p2 = new Person("李四",18)
+        // console.log(p.say === p2.say)
+        // console.log(p.say())
+
+        // ES5中的继承
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age
+        }
+        Person.prototype.say = function () {
+            return this.name + "," + this.age
+        }
+        function Student(name, age, school) {
+            Person.call(this, name, age)  //借用构造函数实现继承
+            this.school = school
+        }
+
+        // Student.prototype = Person.prototype;
+        // Student.prototype.marray = true
+
+        // let stu = new Student("张三",18,"千锋教育")
+        // let per = new Person("张四",38)
+        // console.log(per.marray)
+
+        Student.prototype = Object.create(Person.prototype); // 实现了原型链继承
+        Student.prototype.constructor = Student;
+    </script>
+</body>
+
+</html>

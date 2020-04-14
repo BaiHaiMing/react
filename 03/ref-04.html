@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+        // ref的讲解
+        // ref可以给dom元素做标记
+        // const A = () => {
+        //     return (
+        //         <div>A</div>
+        //     )
+        // }
+
+        class B extends React.Component{
+            render() {
+                return (
+                    <div>BBB</div>
+                )
+            }
+        }
+
+        class App extends React.Component{
+
+            constructor(props) {
+                super(props)
+                this.input = React.createRef()
+            }
+
+            componentDidMount() {
+                this.input.current.focus()
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref={this.input} />
+                        <B ref={el=>this.b=el}/>
+                    </div>
+                )
+            }
+        }
+
+
+        ReactDOM.render(<App/>, document.getElementById("box"))
+    </script>
+</body>
+
+</html>

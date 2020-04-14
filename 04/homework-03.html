@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+    <script src="./data.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+
+        const List = props => {
+            return (
+                <ul style={{ display: props.visible ? 'block' : "none" }}>
+                    {
+                        props.list.map((item, index) => {
+                            return <li key={index}>
+                                <span>{item.username}</span>
+                                {/*<span style={{color:item.vip?'red':''}}>{item.message}</span>*/}
+                                <span className={item.vip ? 'red' : ''}>{item.message}</span>
+                            </li>
+                        })
+                    }
+                </ul>
+            )
+        }
+
+        class Group extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    visible: true  //定义了Group组件的初始化状态
+                }
+            }
+            toggle = () => {
+                // this.setState({
+                //     visible:!this.state.visible
+                // })
+
+                this.setState((prevState, props) => {
+                    if (props.name === "好友") return null
+                    return {
+                        visible: !prevState.visible
+                    }
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <h3 onClick={this.toggle}>{this.props.name}</h3>
+                        <List visible={this.state.visible} list={this.props.list} />
+                    </div>
+                )
+            }
+        }
+
+        const App = () => {
+            return (
+                <div>
+                    {
+                        Object.keys(dataList).map((item, index) => {
+                            return <Group key={index} {...dataList[item]} />
+                        })
+                    }
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, document.getElementById("box"))
+    </script>
+</body>
+
+</html>

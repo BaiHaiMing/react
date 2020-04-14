@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>super的讲解</title>
+</head>
+
+<body>
+    <script>
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            say(){
+                return this.name+","+this.age;
+            }
+        }
+
+        // ES6中constuctor构造函数里面为啥调用super?
+        // 说白了，就是让父类的构造函数执行一遍来去给子类赋值属性
+        class Student extends Person{
+            constructor(name,age,school){
+                super(name,age)  // ES6中super必须放在构造函数第一行
+                this.school = school;
+            }
+            say(){
+                return super.say()+","+this.school
+            }
+        }
+
+        let per = new Person("张三",18)
+        let stu = new Person("张四",18,"千峰教育")
+        console.log(stu.say())
+      
+    </script>
+</body>
+
+</html>

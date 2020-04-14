@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.js"></script>
+
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/babel">
+        // 做一个简单的计数器案例
+
+        class Counter extends React.Component {
+            constructor() {
+                // console.log("constructor-01")
+                super()
+                //初始化组件的状态
+                this.state = {
+                    count: 1
+                }
+                this.handleClick = this.handleClick.bind(this)
+            }
+            componentDidMount() {
+                // console.log("componentDidMount...03")
+            }
+            handleClick() {
+                // this.state.count = this.state.count+1
+                //console.log(this.state.count) //发现了数据改变了，但是视图没有渲染。vue中的数据是放在data里面管理的。
+                this.setState({ //会触发render的重新渲染操作
+                    count: this.state.count + 1
+                }, () => {
+                    console.log(this.state.count) //如果想要获取组件最新的状态，需要再setState的callback回调函数中获取即可
+                })
+            }
+            render() {
+                // console.log("render-02")
+                return (
+                    <div>
+                        <p>counter====> {this.state.count}</p>
+                        <p><button onClick={this.handleClick}>改变count</button></p>
+                    </div>
+                )
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Counter/>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App/>, document.getElementById("box"))
+    </script>
+</body>
+
+</html>

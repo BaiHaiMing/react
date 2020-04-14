@@ -1,0 +1,70 @@
+1.讲解homework
+2.ref 给DOM或者给组件进行标记
+    2-1 ref字符串方式，react的严格模式下不建议使用
+        componentDidMount(){
+            this.refs.input.focus()
+        }
+        <input ref="input"/>
+    2-2 回调函数的写法
+        componentDidMount(){
+            this.input.focus()  // this.自定义的属性 = 表示节点的单变量
+        }
+        <input ref={el=this.input=el}/>
+    2-3 React.createRef的形式
+        constuctor(){
+            super()
+            this.input = React.createRef()
+        }
+        componentDidMount(){
+            this.input.current.focus()
+        }
+        <input ref={this.input}/>
+    
+    注意函数式组建里面不能使用ref
+
+3.组件的数据承载（props属性 | state状态）
+
+    props属性一般是从外部传入的，组件内部是不能对外部传入进来的属性进行更改，自己只是拿来用的。
+    state状态是组件自身定义的，后续组件可以对于自身定义的状态进行更改。
+
+    扩展 -- 初始化的钩子函数执行顺序：
+        constuctor
+        render
+        componentDidMount
+    
+    更改state值，不能直接更改，因为直接更改的话视图不会同步的渲染
+    对于状态的改变我们可以使用setState的方法去改变组件自身的状态。
+    this.setState({
+        key:新的value值
+    }[,callback])
+
+    setState更改状态，是异步的，所以后续获取不到组件更新后的最新状态。
+    如果想要获取组件最新的状态，需要再setState的callback回调函数中获取即可
+    注意：上面的写法有一个问题，连续执行多次其实内部进行了对象的合并操作
+
+    解决？可以采用setState的第二种写法解决此类问题
+    this.setState((prevState)=>{
+        return {
+            key:新的value值
+        }
+    }[,callback])
+
+4.事件函数的this指向
+    4-1.可以写成箭头函数的形式
+        handleClick = () => {
+            console.log(this)
+        }
+
+         <p><button onClick={this.handleClick}>改变count</button></p>
+    
+    4-2.可以在构造函数里面进行this的绑定
+        onstuctor(){
+            super()
+            this.handleClick = this.handleClick.bind(this)
+        }
+
+        handleClick(){
+            console.log(this)
+        }
+
+        <p><button onClick={this.handleClick}>改变count</button></p>
